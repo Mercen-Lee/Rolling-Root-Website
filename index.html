@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="./favicon.png">
+  <title>Rolling Root</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="Build/Rolling Root.loader.js"></script>
+  <script>
+    var status = 0;
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      var meta = document.createElement('meta');
+      meta.name = 'viewport';
+      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+      document.getElementsByTagName('head')[0].appendChild(meta);
+    }
+    document.addEventListener("keydown", start, false);
+    function start(event) {
+      if (status == 0) {
+        document.getElementById('unity-canvas').style.display = "block";
+        document.getElementById('container').style.display = "hidden";
+        createUnityInstance(document.querySelector("#unity-canvas"), {
+          dataUrl: "Build/Rolling Root.data", frameworkUrl: "Build/Rolling Root.framework.js",
+          codeUrl: "Build/Rolling Root.wasm", streamingAssetsUrl: "StreamingAssets",
+        });
+      }
+      status = 1;
+    }
+  </script>
+</head>
+<body>
+  <div class="vcontainer" id="container">
+    <div class="hcontainer">
+      &nbsp;<image src="./Title.png" class="title"></image>&nbsp;
+    </div>
+    <div class="hcontainer">
+      <a href="./Download/Rolling Root Windows.exe" download><button class="button"><image src="https://www.svgrepo.com/show/37912/windows-8.svg" class="icon"></image></button></a>
+      <a href="./Download/Rolling Root macOS.exe" download><button class="button"><image src="https://www.svgrepo.com/show/7385/apple.svg" class="icon"></image></button></a>
+      <a href="./Download/Rolling Root Linux.zip" download><button class="button"><image src="https://www.svgrepo.com/show/306344/linux.svg" class="icon"></image></button></a>
+      <a href="./Download/Rolling Root Android.zip" download><button class="button"><image src="https://www.svgrepo.com/show/329919/android.svg" class="icon"></image></button></a>
+      <a href="https://github.com/Mercen-Lee/Rolling-Root-iOS"><button class="button"><image src="https://www.svgrepo.com/show/330711/ios.svg" class="icon"></image></button></a>
+    </div>
+  </div>
+  <image src="./406SOFT.svg" class="logo"></image>
+  <canvas id="unity-canvas" class="canvas"></canvas>
+</body>
+</html>
